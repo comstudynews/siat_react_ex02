@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ES6 문법의 Class 만들기</h1>
+    <script>
+        class Calc {
+            constructor (company) {
+                console.log("::: Calc :::");
+                this.company = company;
+            }
+
+            add(x, y) {
+                console.log(this.company);
+                return x + y;
+            }
+        }
+        // 精神一到 何事不成 (정신만 차리면 호랑이에게 물려가도 산다)
+        // const calc = new Calc("유한양행");
+        // console.log(calc.add(10, 20));
+        // 상속 받기
+        class CalcDrived extends Calc {
+            constructor (company) {
+                super(company);
+            }
+        }
+        
+        const calc2 = new CalcDrived("NC소프트");
+        console.log(calc2.company);
+        console.log(calc2.add(30,40));
+    </script>
+</body>
+</html>

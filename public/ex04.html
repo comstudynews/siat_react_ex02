@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var Calc = function(){
+            this.company = 'SAMSUNG'
+        }
+        Calc.prototype.setCompany = function(company) {
+            this.company = company;
+        }
+        var CalcDrived = function(){
+            this.name= '김길동';
+        }
+        CalcDrived.prototype = new Calc();
+        CalcDrived.constructor = CalcDrived;
+        var bObj = new CalcDrived();
+        bObj.setCompany("LG");
+        console.log(bObj.company);
+        console.log(bObj.name);
+    </script>
+</body>
+</html>

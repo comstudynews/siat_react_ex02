@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>뮤직 플레이어</h2>
+    <script>
+        function MusicPlayer(list) {
+            this.list = list;
+        }
+        MusicPlayer.prototype.play2 = function(no) {
+            for(var i=0; i<this.list.length; i++) {
+                var music = this.list[i];
+                if(music.no === no) {
+                    console.log(`${music.singer}의 ${music.song} 재생중`);
+                }
+            }
+        };
+        MusicPlayer.prototype.play3 = function(no) {
+            // forEach(this.list, function())
+            // window.musicList
+            this.list.forEach(function(item, i) {
+                if(item.no === no) {
+                    console.log(`${item.singer}의 ${item.song} 재생중`);
+                }
+            });
+        }
+        MusicPlayer.prototype.play4 = function(no) {
+            var idx = this.list.findIndex(function(item) {
+                return item.no == no;
+            });
+            console.log(this.list[idx]);
+        }
+        MusicPlayer.prototype.play5 = function(no) {
+            const keys = this.list.keys();
+            for (let x of keys) {
+                if(this.list[x].no === no) {
+                    var item = this.list[x];
+                    console.log(`${item.singer}의 ${item.song} 재생중`);
+                }
+            }
+        }
+        MusicPlayer.prototype.play6 = function(no) {
+            var music = this.list.find(function(item) { 
+                return item.no == no;
+            });
+
+            console.log(`${music.singer}의 ${music.song} 재생중`);
+        }
+
+        MusicPlayer.prototype.play7 = function(no) {
+            const musicArr = this.list.filter(function (music) {
+                return music.no == no;
+            });
+
+            document.write(JSON.stringify(musicList));
+        }
+
+        Array.prototype.myFilter = function(callback) {
+            try{
+                console.log(this.length)
+                var tempArr = [];
+                for(var i=0; i<this.length; i++) {
+                    callback(this[i]) ? tempArr.push( this[i] ) : null;
+                }
+                return tempArr;
+            } catch(e) {
+                console.log("error", e)
+            }
+        };
+        
+        MusicPlayer.prototype.play8 = function(no) {
+            const musicArr = this.list.myFilter(function (music) {
+                return music.no == no;
+            });
+
+            document.write(JSON.stringify(musicArr));
+        }
+
+        MusicPlayer.prototype.play = function(no) {
+            // myFindIndex() 함수 구현하기
+        }
+        ///////////////////////////////////////////////////////
+        const musicList = [
+            {no:1, singer:'아이유', song:'좋은날'}, 
+            {no:2, singer:'이승기', song:'내여자라니까'}, 
+            {no:3, singer:'이무진', song:'신호등'},
+            {no:4, singer:'정은지', song:'하늘 바라기'},
+            {no:5, singer:'조항조', song:'고맙소'}
+        ];
+        const mp = new MusicPlayer(musicList);
+        mp.play(4); // 이무진의 신호등 재생중 ...
+    
+        //const mp2 = new  MusicPlayer2(musicList);
+        //mp2.addMusic({singer:'이선희', song:'J에게'});
+        //mp2.play(); // 전곡 재생중 ...
+    </script>
+</body>
+</html>

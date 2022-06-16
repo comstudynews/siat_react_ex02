@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
-function App() {
+function Heading(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>{props.name}이의 {props.company}</h1>
+      <button onClick={()=>{
+        props.action("Gallery");
+      }}>Company변경</button>
+    </>
+  );  
+}
+
+function App() {
+  var user = "홍길동";
+  var [company, setCompany] = useState("Home Shopping");
+  function actionFn(message) {
+    setCompany(message);
+  }
+
+  return (
+    <div>
+      company : <input type="text" name="company" value={company} onChange={function(evt){
+        setCompany(evt.currentTarget.value);
+      }}/>
+      <Heading name={user} company={company} action={actionFn}></Heading></div>
   );
 }
 
